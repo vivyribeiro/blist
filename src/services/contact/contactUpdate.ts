@@ -1,8 +1,8 @@
 import api from "../api";
 
-import { iContact, iContactUpdate } from "../../types/contexts";
+import { iContact, iContactRequest } from "../../types/contexts";
 
-const update = async (id: string, data: iContactUpdate): Promise<iContact> => {
+const update = async (id: string, data: iContactRequest): Promise<iContact> => {
 	const response = await api.patch<iContact>(`contacts/${id}`, data);
 
 	return response.data;
