@@ -64,10 +64,11 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
+			console.log(message);
 
 			toast({
 				title: "Cadastro não realizado",
-				description: message,
+				description: "O e-mail/telefone já existe.",
 				status: "error"
 			});
 		}
@@ -121,10 +122,11 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
+			console.log(message);
 
 			toast({
 				title: "Autenticação falhou",
-				description: message,
+				description: "O e-mail/senha inválidos",
 				status: "error"
 			});
 		}
@@ -141,12 +143,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 				const requestError = error as AxiosError<iApiMessage>;
 				const message =
 					requestError.response?.data.message || requestError.message;
-
-				toast({
-					title: "Autenticação falhou",
-					description: message,
-					status: "error"
-				});
+				console.error(message);
 			} finally {
 				setTimeout(() => {
 					setGlobalLoading(false);
@@ -185,7 +182,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 
 			toast({
 				title: "Exportação falhou",
-				description: message,
+				description: "Por favor, tente novamente mais tarde.",
 				status: "error"
 			});
 		} finally {
@@ -212,7 +209,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 
 			toast({
 				title: "Usúario não atualizado",
-				description: message,
+				description: "O e-mail/telefone já existe.",
 				status: "error"
 			});
 		}
@@ -235,7 +232,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 
 			toast({
 				title: "Senha não atualizada",
-				description: message,
+				description: "Por favor, tente novamente mais tarde.",
 				status: "error"
 			});
 		}
@@ -261,7 +258,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 
 			toast({
 				title: "Conta não desativada",
-				description: message,
+				description: "Por favor, tente novamente mais tarde.",
 				status: "error"
 			});
 		}

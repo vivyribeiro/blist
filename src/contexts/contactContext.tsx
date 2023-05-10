@@ -70,10 +70,11 @@ export const ContactProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
+			console.error(message);
 
 			toast({
 				title: "Contato não cadastrado",
-				description: message,
+				description: "O e-mail/telefone já existe.",
 				status: "error"
 			});
 		}
@@ -100,10 +101,11 @@ export const ContactProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
+			console.error(message);
 
 			toast({
 				title: "Contato não atualizado",
-				description: message,
+				description: "O e-mail/telefone já existe.",
 				status: "error"
 			});
 		}
@@ -125,10 +127,11 @@ export const ContactProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
+			console.error(message);
 
 			toast({
 				title: "Contato não removido",
-				description: message,
+				description: "Por favor, tente novamente mais tarde.",
 				status: "error"
 			});
 		}
