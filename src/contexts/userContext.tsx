@@ -82,11 +82,7 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 			const message =
 				requestError.response?.data.message || requestError.message;
 
-			toast({
-				title: "Error!",
-				description: message,
-				status: "error"
-			});
+			console.error(message);
 		}
 	};
 
@@ -99,11 +95,8 @@ export const UserProvider = ({ children }: mandatoryChildren) => {
 			const requestError = error as AxiosError<iApiMessage>;
 			const message =
 				requestError.response?.data.message || requestError.message;
-			toast({
-				title: "Error!",
-				description: message,
-				status: "error"
-			});
+
+			console.error(message);
 		}
 	};
 

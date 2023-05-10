@@ -1,16 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import {
-	Box,
-	Text,
-	Button,
-	VStack,
-	Heading,
-	useColorModeValue
-} from "@chakra-ui/react";
-import { CheckCircleIcon } from "@chakra-ui/icons";
+import { Box, Text, Button, VStack, Heading } from "@chakra-ui/react";
 
 import { useUserContext } from "../../contexts/userContext";
 import { iSendResetPasswordEmail } from "../../types/contexts";
@@ -18,6 +9,7 @@ import { sendResetPasswordSchema } from "../../schemas/resetPassword";
 
 import InputForm from "../../components/InputForm";
 import NavLink from "../../components/Navigation/NavLink";
+import ResultMessage from "../../components/ResultMessage";
 import FormContainer from "../../components/CustomContainers/FormContainer";
 
 const SendResetPasswordEmail = () => {
@@ -40,20 +32,30 @@ const SendResetPasswordEmail = () => {
 		setSucessMessage(message);
 	};
 
-	const icColor = useColorModeValue("blue.800", "whiteAlpha.900");
-
 	return (
 		<FormContainer>
-			{isSubmitted && sucessMessage ? (
-				<VStack w="full" align="center" justifyContent="center" spacing="1rem">
-					<CheckCircleIcon color={icColor} boxSize="3rem" />
-					<Heading fontSize={{ base: "16px", md: "xl" }} textAlign="center">
-						{sucessMessage}!
-					</Heading>
-					<Text textAlign="justify" fontSize={{ base: "12px", md: "lg" }}>
-						Por favor, verifique seu e-mail.
-					</Text>
-				</VStack>
+			{isSubmitted ? (
+				<>
+					{sucessMessage && (
+						<ResultMessage
+							type="success"
+							style="doble"
+							text="Por favor, verifique seu e-mail."
+						>
+							{sucessMessage}!
+						</ResultMessage>
+					)}
+
+					{!sucessMessage && (
+						<ResultMessage
+							type="error"
+							style="doble"
+							text="Por favor, tente novamente mais tarde."
+						>
+							Error ao enviar o e-mail!
+						</ResultMessage>
+					)}
+				</>
 			) : (
 				<VStack w="full" spacing="1rem">
 					<Box w="inherit" alignContent="start" mb="16px">

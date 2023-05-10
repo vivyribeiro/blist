@@ -76,3 +76,9 @@ export type iPaginationProps = {
 	currentPage: number;
 	setCurrentPage: Dispatch<SetStateAction<number>>;
 };
+
+export type iResultMessageProps = mandatoryChildren & {
+	type: "success" | "error";
+	style: "single" | "doble";
+	text?: string;
+};
